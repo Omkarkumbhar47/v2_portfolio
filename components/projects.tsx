@@ -1,52 +1,39 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Leaf, Calculator, Video, BookOpen, QrCode } from "lucide-react"
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Leaf, Calculator, Video, BookOpen, QrCode } from "lucide-react";
+import { Box, User, Globe, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "CarbonExchange AI",
+    title: "3D Model Viewer",
     description:
-      "A platform that calculates carbon credits based on land value, helping companies understand their environmental impact and manage carbon credits effectively.",
-    icon: Leaf,
-    technologies: ["React", "Node.js", "AI/ML", "MongoDB"],
-    category: "Environmental Tech",
+      "An interactive web-based 3D model viewer built during my Software Internship at Noitavonne. Developed using React Three Fiber and Three.js, this tool allows users to load, rotate, zoom, and explore 3D models directly in the browser. The project strengthened my skills in WebGL rendering, performance optimization, and modern frontend architecture.",
+    icon: Box,
+    technologies: [
+      "React",
+      "Node.js",
+      "Three.js",
+      "React Three Fiber",
+      "Tailwind CSS",
+    ],
+    category: "3D Web Application",
+    github: "https://github.com/Omkarkumbhar47/3D-Viewer",
+    live: "https://3d-viewer-eight.vercel.app/",
   },
   {
-    title: "DiverseServices",
+    title: "Pravin's 3D Portfolio",
     description:
-      "Tax management system for US-based users that automates tax filing and securely stores data while adhering to strict privacy laws and industry standards.",
-    icon: Calculator,
-    technologies: ["React", "Express", "PostgreSQL", "Security"],
-    category: "FinTech",
+      "A modern and visually engaging portfolio website for a professional 3D Artist and Animator. Designed to showcase high-quality 3D models, animations, and creative projects using smooth interactions powered by Three.js and React. Built with performance and visual storytelling in mind.",
+    icon: User,
+    technologies: ["React", "Three.js", "React Three Fiber", "Tailwind CSS"],
+    category: "Portfolio Website",
+    github: "https://github.com/Omkarkumbhar47/3d_pravin_portfolio",
+    live: "https://pravinportfolio-five.vercel.app/",
   },
-  {
-    title: "StreamDeck",
-    description:
-      "Full-featured streaming platform using RTMP servers with high-quality real-time video streaming, user authentication, video encoding, and playback.",
-    icon: Video,
-    technologies: ["React", "RTMP", "WebRTC", "Node.js"],
-    category: "Media Platform",
-  },
-  {
-    title: "Publisher",
-    description:
-      "Online platform that converts written content and books into interactive flipbooks for digital distribution and sales. Led team development.",
-    icon: BookOpen,
-    technologies: ["React", "PDF.js", "Canvas API", "MongoDB"],
-    category: "Publishing",
-  },
-  {
-    title: "QR Generator",
-    description:
-      "Dynamic QR code generator for various data types including text, URLs, and PDFs. Supports both static and dynamic QR codes with real-time updates.",
-    icon: QrCode,
-    technologies: ["React", "QR.js", "Node.js", "MySQL"],
-    category: "Utility",
-  },
-]
+];
 
 export function Projects() {
   return (
@@ -59,15 +46,18 @@ export function Projects() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Featured Projects
+          </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A showcase of the major projects I've worked on, demonstrating my expertise in full-stack development.
+            A showcase of the major projects I've worked on, demonstrating my
+            expertise in full-stack development.
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => {
-            const IconComponent = project.icon
+            const IconComponent = project.icon;
             return (
               <motion.div
                 key={project.title}
@@ -91,21 +81,49 @@ export function Projects() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
-                    <p className="text-muted-foreground mb-4 flex-1">{project.description}</p>
+                    <p className="text-muted-foreground mb-4 flex-1">
+                      {project.description}
+                    </p>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="text-xs">
+                        <Badge
+                          key={tech}
+                          variant="secondary"
+                          className="text-xs"
+                        >
                           {tech}
                         </Badge>
                       ))}
                     </div>
+                    <div className="flex gap-3 mt-5">
+                      {project.github && (
+                        <a href={project.github} target="_blank">
+                          <Badge className="cursor-pointer hover:scale-105">
+                            <Github className="w-3 h-3 mr-1" />
+                            Code
+                          </Badge>
+                        </a>
+                      )}
+
+                      {project.live && (
+                        <a href={project.live} target="_blank">
+                          <Badge
+                            variant="outline"
+                            className="cursor-pointer hover:scale-105"
+                          >
+                            <Globe className="w-3 h-3 mr-1" />
+                            Live Demo
+                          </Badge>
+                        </a>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
-            )
+            );
           })}
         </div>
       </div>
     </section>
-  )
+  );
 }
